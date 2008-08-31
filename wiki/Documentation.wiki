@@ -1,5 +1,4 @@
 = Documentation =
-
 == Usage ==
 As a jQuery chained function
 {{{
