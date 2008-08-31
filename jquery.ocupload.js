@@ -1,5 +1,5 @@
 /*
- * One Click Upload 1.0.0 - jQuery Plugin
+ * One Click Upload - jQuery Plugin
  * Copyright (c) 2008 Michael Mitchell - http://www.michaelmitchell.co.nz
  */
 (function($){
