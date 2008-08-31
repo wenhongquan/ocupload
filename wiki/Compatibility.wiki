@@ -1,0 +1,2 @@
+== Compatibility ==
+One Click Upload has been tested and works with the latest versions of Firefox,Internet Explorer,Opera and Safari. If you have more accurate compatibility results please contact me with your findings.
