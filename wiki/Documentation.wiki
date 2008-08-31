@@ -11,14 +11,14 @@ $.ocupload($(element), options);
 }}}
 == Options ==
 Both of the functions accept an optional options object, which can contain any or all of the following (_default value_):
-  * *name*: ("_file_") The name of the file input form element.
-  * *enctype*: ("_multipart/form-data_") The enctype attribute of the form, it is usually a good idea to leave this as default.
-  * *action*: (_null_) The form action attribute, the page that will do the processing on the server side.
-  * *autoSubmit*: (_true_) If true the form will be submitted after the user selects a file (after the file browser closes).
-  * *params*: (_{}_) Additional paramaters to be sent with the file, creates a hidden form element using the key as the name of the form and the value as the value.
-  * *onSubmit* (_null_) The callback function called before submitting the form.
-  * *onComplete* (_null_) The callback function called after the action page loads.
-  * *onSelect* (_null_) The callback function called after the user has selected a file.
+  * *name:* ("_file_") The name of the file input form element.
+  * *enctype:* ("_multipart/form-data_") The enctype attribute of the form, it is usually a good idea to leave this as default.
+  * *action:* (_null_) The form action attribute, the page that will do the processing on the server side.
+  * *autoSubmit:* (_true_) If true the form will be submitted after the user selects a file (after the file browser closes).
+  * *params:* (_{}_) Additional paramaters to be sent with the file, creates a hidden form element using the key as the name of the form and the value as the value.
+  * *onSubmit:* (_null_) The callback function called before submitting the form.
+  * *onComplete:* (_null_) The callback function called after the action page loads.
+  * *onSelect:* (_null_) The callback function called after the user has selected a file.
 == Functions ==
 == Callbacks ==
 == Notes ==
