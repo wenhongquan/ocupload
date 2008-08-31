@@ -20,7 +20,15 @@ Both of the functions accept an optional options object, which can contain any o
   * *onSelect:* (_null_) The callback function called after the user has selected a file.
 == Functions ==
 === filename ===
+==== Description ====
 ||_string_ *filename* ( void )||
+
+This function returns the name of the currently selected file.
+==== Example ====
+{{{
+var myUpload = $(element).upload();
+var filename = myUpload.filename();
+}}}
 
 === params ===
 ||_object_ *params* ( void )||
