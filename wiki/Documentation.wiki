@@ -19,5 +19,8 @@ Both of the functions accept an optional options object, which can contain any o
   * *onComplete:* (_null_) The callback function called after the action page loads.
   * *onSelect:* (_null_) The callback function called after the user has selected a file.
 == Functions ==
+=== filename () ===
+=== params () ===
+=== params ( params ) ===
 == Callbacks ==
 == Notes ==
