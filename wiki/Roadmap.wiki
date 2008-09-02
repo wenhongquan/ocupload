@@ -1,4 +1,4 @@
-==Proposed Features==
+=Proposed Features=
 ===Mouseover/Hover Effects===
 ====Problem====
 Because the input form is placed over top of the element with opacity 0 the hover effects of the underlying element are ignored.
