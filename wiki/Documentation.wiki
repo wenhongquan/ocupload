@@ -3,7 +3,6 @@ This documentation covers the following.
   * Basic Usage
   * Options
   * Functions
-  ** test
   * Callbacks
 
 == Basic Usage ==
