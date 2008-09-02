@@ -1,4 +1,10 @@
 = Documentation =
+  * Usage
+  * Options
+  * Functions
+  * Callbacks
+
+
 == Usage ==
 As a jQuery chained function
 {{{
