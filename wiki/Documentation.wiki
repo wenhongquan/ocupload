@@ -43,30 +43,6 @@ var myUpload = $(element).upload();
 alert(myUpload.filename());
 }}}
 
-=== params ===
-==== Description ====
-||_object_ *params* ( void )||
-||_void_ *params* ( object )||
-
-This function is used to alter additional parameters. 
-==== Example ====
-{{{
-//Setting paramters at creation
-var myUpload = $(element).upload({
-	params: {name: 'My file', description: 'My file description'}  
-});
-
-/**
- * Settings paramaters during runtime
- * 	name: "My file" is replaced with "My new file
- * 	description: remains the same
- * 	size: is added
- */
-myUpload.params({
-	name: 'My new file', size: '1000kb'
-});
-}}}
-
 === name ===
 ==== Description ====
 ||_string_ *name* ( void )||
@@ -125,6 +101,30 @@ myUpload.enctype('application/x-www-form-urlencoded');
 
 //Alerts "text/plain"
 alert(myUpload.enctype());
+}}}
+
+=== params ===
+==== Description ====
+||_object_ *params* ( void )||
+||_void_ *params* ( object )||
+
+This function is used to alter additional parameters. 
+==== Example ====
+{{{
+//Setting paramters at creation
+var myUpload = $(element).upload({
+	params: {name: 'My file', description: 'My file description'}  
+});
+
+/**
+ * Settings paramaters during runtime
+ * 	name: "My file" is replaced with "My new file
+ * 	description: remains the same
+ * 	size: is added
+ */
+myUpload.params({
+	name: 'My new file', size: '1000kb'
+});
 }}}
 
 === set ===
