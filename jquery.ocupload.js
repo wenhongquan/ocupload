@@ -227,7 +227,7 @@
 				form.submit(); 
 				
 				/** Do something after we are finished uploading */
-				iframe.load(function() {
+				iframe.unbind().load(function() {
 					/** Get a response from the server in plain text */
 					var myFrame = document.getElementById(iframe.attr('name'));
 					var response = $(myFrame.contentWindow.document.body).text();
