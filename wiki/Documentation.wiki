@@ -1,11 +1,11 @@
 = Documentation =
-  * Usage
+This documentation covers the following.
+  * Basic Usage
   * Options
   * Functions
   * Callbacks
 
-
-== Usage ==
+== Basic Usage ==
 As a jQuery chained function
 {{{
 $(element).upload( /** options */ );
