@@ -13,7 +13,7 @@
 			onSubmit: function() {},
 			onComplete: function() {},
 			onSelect: function() {},
-			params: []
+			params: {}
 		}, options);
 
 		return new $.ocupload(this, options);
