@@ -140,13 +140,13 @@ var myUpload = $(element).upload( /** options */ );
 //Setting options after creation
 myUpload.set({
 	name: 'file',
-	action: 'upload.php',
+	action: '',
 	enctype: 'multipart/form-data',
-	params: {/** params */},
+	params: {},
 	autoSubmit: true,
-	onSubmit: function() { alert('Submit!'); },
-	onComplete: function() { alert('Complete!'); },
-	onSelect: function() { alert('Select!'); }
+	onSubmit: function() {},
+	onComplete: function() {},
+	onSelect: function() {}
 });
 }}}
 
@@ -166,4 +166,21 @@ HTML
 }}}
 
 == Callbacks ==
-== Notes ==
+
+=== onSubmit ===
+||_void_ *onSubmit* ( void )||
+
+==== Description ====
+This is called before the form is submitted, this is where you should make last minute changes to the parameters etc...
+
+=== onComplete ===
+||_void_ *onComplete* ( response )||
+
+==== Description ====
+This is called after the action page has loaded, the first parameter contains the html response from the action so you can use it like an AJAX response. _*onComplete*_ does not mean the file was uploaded successfully, you should use the action script to supply a suitable response.
+
+=== onSelect ===
+||_void_ *onSelect* ( void )||
+
+==== Description ====
+This is called after the file browse window is closed or the value of the file input is changed.
