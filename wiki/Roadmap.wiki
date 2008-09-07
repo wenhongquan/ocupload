@@ -1,4 +1,6 @@
 =Proposed Features=
+===File Que===
+Could use one upload element to select more than one file at a time and submit them at the same time. Could keep track of what files are in the que and remove files if needed.
 ===Mouseover/Hover Effects===
 ====Problem====
 Because the input form is placed over top of the element with opacity 0 the hover effects of the underlying element are ignored.
