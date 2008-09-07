@@ -71,8 +71,8 @@
 		/** Find the container and make it nice and snug */
 		var container = element.parent().css({
 			position: 'relative',
-			height: element.height()+'px',
-			width: element.width()+'px',
+			height: element.outerHeight()+'px',
+			width: element.outerWidth()+'px',
 			overflow: 'hidden',
 			cursor: 'pointer',
 			margin: 0,
@@ -96,7 +96,7 @@
 			self.onSelect(); 
 			
 			/** Submit the form automaticly after selecting the file */
-			if(options.autoSubmit) {
+			if(self.autoSubmit) {
 				self.submit();
 			}
 		});
