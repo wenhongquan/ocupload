@@ -3,35 +3,36 @@
  * Copyright (c) 2008 Michael Mitchell - http://www.michaelmitchell.co.nz
  */
 (function($){
-	$.fn.upload = function(options) {
-		/** Merge the users options with our defaults */
-		options = $.extend({
-			name: 'file',
-			enctype: 'multipart/form-data',
-			action: '',
-			autoSubmit: true,
-			onSubmit: function() {},
-			onComplete: function() {},
-			onSelect: function() {},
-			params: {}
-		}, options);
-        
+	$.fn.ocupload = function(options) {
 		return new $.ocupload(this, options);
 	},
 	
 	$.ocupload = function(element, options) {
 		/** Fix scope problems */
 		var self = this;
-        
-		/** A unique id so we can find our elements later */
-		var id = new Date().getTime().toString().substr(8);
+                
+        /** A unique id so we can find our elements later */
+        var id = new Date().getTime().toString().substr(8);
+   
+        /** Merge the users options with our defaults */
+        var options = $.extend({
+            name: 'file',
+            enctype: 'multipart/form-data',
+            action: '',
+            autosubmit: true,
+            params: {},
+            hover: {},
+            onSubmit: function() {},
+            onComplete: function() {},
+            onSelect: function() {}
+        }, options);
         
 		/** Upload Iframe */
 		var iframe = $(
 			'<iframe '+
 				'id="iframe'+id+'" '+
 				'name="iframe'+id+'" '+
-                'src="about:blank"'+
+                'src="/"'+
 			'></iframe>'
 		).css({
 			display: 'none'
@@ -65,7 +66,7 @@
 		
 		/** Put everything together */
 		element.wrap('<div></div>'); //container
-			form.append(input);
+		    form.append(input);
 			element.after(form);
 			element.after(iframe);
     
@@ -79,7 +80,7 @@
 			margin: 0,
 			padding: 0
 		});
-			
+        
 		/** Put our file input in the right place */
 		input.css('marginTop', -container.height()-10+'px');
 
@@ -91,78 +92,76 @@
 			});
 		});
         
-		/** Watch for file selection */
-		input.change(function() {
-			/** Do something when a file is selected. */
-			self.onSelect(); 
-			
-			/** Submit the form automaticly after selecting the file */
-			if(self.autoSubmit) {
-				self.submit();
-			}
-		});
-		
 		/** Methods */
 		$.extend(this, {
-			autoSubmit: true,
-			onSubmit: options.onSubmit,
-			onComplete: options.onComplete,
-			onSelect: options.onSelect,
-		
-			/** get filename */		
-			filename: function() {
+            /** options */
+			_autosubmit: options.autosubmit,
+            _params: options.params,
+            _hover: options.hover,
+            _hover_default: {},  
+
+            /** callbacks */
+            onComplete: options.onComplete,
+            onSubmit: options.onSubmit,
+            onSelect: options.onSelect,
+            
+            /** set/get methods */
+			getFilename: function() {
 				return input.attr('value');
 			},
-			
-			/** get/set params */
-			params: function(params) {
-				var params = params ? params : false;
-				
-				if(params) {
-					options.params = $.extend(options.params, params);
-				}
-				else {
-					return options.params;
-				}
+            
+            setName: function(name) {
+                input.attr('name', name);
+            },
+            
+            getName: function(name) {
+                return input.attr('name');
+            },
+            
+            setAction: function(action) {
+                form.attr('action', action);
+            },
+            
+            getAction: function(action) {
+               return form.attr('action');
+            },
+            
+            setEnctype: function(enctype) {
+                form.attr('enctype', enctype);
+            },
+            
+            getEnctype: function(enctype) {
+               return form.attr('enctype');
+            },
+
+			setParams: function(params) {
+				this._params = $.extend(this.params, params);
 			},
-			
-			/** get/set name */
-			name: function(name) {
-				var name = name ? name : false;
-				
-				if(name) {
-					input.attr('name', value);
-				}
-				else {
-					return input.attr('name');
-				}
-			},
-			
-			/** get/set action */
-			action: function(action) {
-				var action = action ? action : false;
-				
-				if(action) {
-					form.attr('action', action);
-				}
-				else {
-					return form.attr('action');
-				}
-			},
-			
-			/** get/set enctype */
-			enctype: function(enctype) {
-				var enctype = enctype ? enctype : false;
-				
-				if(enctype) {
-					form.attr('enctype', enctype);
-				}
-				else {
-					return form.attr('enctype');
-				}
-			},
-			
-			/** set options */
+            
+            getParams: function() {
+                return this._params;
+            },
+            
+            setAutosubmit: function(submit) {
+                this._autosubmit = submit;
+            },
+            
+            getAutosubmit: function() {
+                return this._autosubmit;
+            },
+            
+            setHover: function(hover) {
+                this._hover = $.extend(this._hover, hover);
+                
+                $.each(this._hover, function(key, value) {
+                    self._hover_default[key] = element.css(key);
+                });
+            },
+            
+            getHover: function() {
+                return this._hover;  
+            },
+
 			set: function(obj, value) {
 				var value =	value ? value : false;
 								
@@ -172,19 +171,22 @@
 							throw new Error('[jQuery.ocupload.set] \''+action+'\' is an invalid option.');
 							break;
 						case 'name':
-							self.name(value);
+							self.setName(value);
 							break;
 						case 'action':
-							self.action(value);
+							self.setAction(value);
 							break;
 						case 'enctype':
-							self.enctype(value);
+							self.setEnctype(value);
 							break;
 						case 'params':
-							self.params(value);
+							self.setParams(value);
 							break;
-						case 'autoSubmit':
-							self.autoSubmit = value;
+                        case 'hover':
+                            self.setHover(value);
+                            break;
+						case 'autosubmit':
+							self.setAutosubmit(value);
 							break;
 						case 'onSubmit':
 							self.onSubmit = value;
@@ -207,14 +209,49 @@
 					});
 				}
 			},
-			
+
+            get: function(action) {
+                switch(action) {
+                    default:
+                        throw new Error('[jQuery.ocupload.set] \''+action+'\' is an invalid option.');
+                        break;
+                    case 'name':
+                        return self.getName();
+                        break;
+                    case 'action':
+                        return self.getAction();
+                        break;
+                    case 'enctype':
+                        return self.getEnctype();
+                        break;
+                    case 'params':
+                        return self.getParams();
+                        break;
+                    case 'hover':
+                        return self.getHover();
+                        break;
+                    case 'autosubmit':
+                        return self.getAutosubmit();
+                        break;
+                    case 'onSubmit':
+                        return self.onSubmit;
+                        break;
+                    case 'onComplete':
+                        return self.onComplete;
+                        break;
+                    case 'onSelect':
+                        return self.onSelect;
+                        break;
+                }
+            },
+            
 			/** Submit the form */
 			submit: function() {
 				/** Do something before we upload */
 				this.onSubmit();
 				
 				/** add additional paramters before sending */
-				$.each(options.params, function(key, value) {
+				$.each(self._params, function(key, value) {
 					form.append($(
 						'<input '+
 							'type="hidden" '+
@@ -238,5 +275,44 @@
 				});
 			}
 		});
+        
+        $.each(this._hover, function(key, value) {
+            self._hover_default[key] = element.css(key);
+        });
+        
+        //Emulate hover effects
+        container.hover(
+            function() {
+                $.each(self._hover, function(key, value) {
+                    element.css(key, value);
+                });
+                
+                container.css({
+                    height: element.outerHeight()+'px',
+                    width: element.outerWidth()+'px'
+                });
+            },
+            function() {
+                $.each(self._hover, function(key, value) {
+                    element.css(key, self._hover_default[key]);
+                });
+                
+                container.css({
+                    height: element.outerHeight()+'px',
+                    width: element.outerWidth()+'px'
+                });
+            }
+        );
+        
+        /** Watch for file selection */
+        input.change(function() {
+            /** Do something when a file is selected. */
+            self.onSelect(); 
+            
+            /** Submit the form automaticly after selecting the file */
+            if(self._autosubmit) {
+                self.submit();
+            }
+        });
 	}
 })(jQuery);
