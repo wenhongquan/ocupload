@@ -15,22 +15,23 @@
 			onSelect: function() {},
 			params: {}
 		}, options);
-
+        
 		return new $.ocupload(this, options);
 	},
 	
 	$.ocupload = function(element, options) {
 		/** Fix scope problems */
 		var self = this;
-	
+        
 		/** A unique id so we can find our elements later */
 		var id = new Date().getTime().toString().substr(8);
-		
+        
 		/** Upload Iframe */
 		var iframe = $(
 			'<iframe '+
 				'id="iframe'+id+'" '+
-				'name="iframe'+id+'"'+
+				'name="iframe'+id+'" '+
+                'src="about:blank"'+
 			'></iframe>'
 		).css({
 			display: 'none'
@@ -67,7 +68,7 @@
 			form.append(input);
 			element.after(form);
 			element.after(iframe);
-	
+    
 		/** Find the container and make it nice and snug */
 		var container = element.parent().css({
 			position: 'relative',
@@ -89,7 +90,7 @@
 				left: e.pageX-container.offset().left+'px'
 			});
 		});
-		
+        
 		/** Watch for file selection */
 		input.change(function() {
 			/** Do something when a file is selected. */
